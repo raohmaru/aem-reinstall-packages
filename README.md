@@ -21,7 +21,7 @@ Python command-line utility to detect Adobe Experience Manager (AEM) packages wh
 
 3. Verify the installation:
    ```bash
-   python3 aem-check-packages.py -h
+   python3 aem-reinstall-packages.py -h
    ```
 
 ## Usage
@@ -29,7 +29,7 @@ Python command-line utility to detect Adobe Experience Manager (AEM) packages wh
 Check a local AEM instance with default credentials and install the missing packages interactively:
 
 ```bash
-python3 aem-check-packages.py
+python3 aem-reinstall-packages.py
 ```
 
 This connects to `localhost:4502` using `admin:admin`, lists every package whose greatest version is not installed, and asks whehter to install a package or skip it.
@@ -37,19 +37,19 @@ This connects to `localhost:4502` using `admin:admin`, lists every package whose
 Only list the packages (no installation):
 
 ```bash
-python3 aem-check-packages.py --dryrun
+python3 aem-reinstall-packages.py --dryrun
 ```
 
 Check a specific package group:
 
 ```bash
-python3 aem-check-packages.py  -p com.example.aem
+python3 aem-reinstall-packages.py  -p com.example.aem
 ```
 
 Check a packages on a remote instance:
 
 ```bash
-python3 aem-check-packages.py --host author.example.com:4502 -u myuser:mypassword
+python3 aem-reinstall-packages.py --host author.example.com:4502 -u myuser:mypassword
 ```
 
 Example output:
