@@ -15,6 +15,10 @@ DEFAULT_HOST = 'localhost:4502'
 DEFAULT_USER = 'admin:admin'
 PACKAGES_ROOT = '/etc/packages'
 
+class color:
+    BOLD = '\033[1m'
+    END = '\033[0m'
+
 def read_arguments():
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
