@@ -52,6 +52,16 @@ Check a packages on a remote instance:
 python3 aem-reinstall-packages.py --host author.example.com:4502 -u myuser:mypassword
 ```
 
+For security, credentials can instead be supplied through environment variables:
+
+```bash
+export AEM_USER=myuser
+export AEM_PASSWORD=mypassword
+python3 aem-reinstall-packages.py --host author.example.com:4502 --dryrun
+```
+
+The `-u` / `--user` option takes precedence over `AEM_USER` and `AEM_PASSWORD`.
+
 Example output:
 
 ```
@@ -69,7 +79,7 @@ com.example.aem/example-ui.apps: v12.8.0.001 not installed (installed: none)
 | `-d`, `--dryrun` | Only list the packages that are not installed, without installing them |
 | `--host HOST` | AEM instance host and port (format: `host:port`, default: `localhost:4502`) |
 | `-p PATH`, `--path PATH` | Target a specific package subdirectory (e.g., `adobe` searches `/etc/packages/adobe`) |
-| `-u USER`, `--user USER` | AEM credentials (format: `username:password`, default: `admin:admin`) |
+| `-u USER`, `--user USER` | AEM credentials (format: `username:password`, default: `AEM_USER:AEM_PASSWORD`, with `admin:admin` fallbacks) |
 
 ## How It Works
 

@@ -12,7 +12,6 @@ import tty
 import requests
 
 DEFAULT_HOST = 'localhost:4502'
-DEFAULT_USER = 'admin:admin'
 PACKAGES_ROOT = '/etc/packages'
 
 class color:
@@ -20,6 +19,9 @@ class color:
     END = '\033[0m'
 
 def read_arguments():
+    environment_user = os.getenv('AEM_USER') or 'admin'
+    environment_password = os.getenv('AEM_PASSWORD') or 'admin'
+    default_user = '{0}:{1}'.format(environment_user, environment_password)
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='examples:\n'
@@ -27,8 +29,8 @@ def read_arguments():
                '  %(prog)s --host author.example.com:4502 -u user:pass -p com.example.aem')
     parser.add_argument('--host', default=DEFAULT_HOST,
                         help='AEM host in the format host:port (default: %(default)s)')
-    parser.add_argument('-u', '--user', default=DEFAULT_USER,
-                        help='Credentials in the format user:pass (default: %(default)s)')
+    parser.add_argument('-u', '--user', default=default_user,
+                        help='Credentials in the format user:pass (default: AEM_USER/AEM_PASSWORD or admin:admin)')
     parser.add_argument('-p', '--path',
                         help='A package sub-path (eg: "adobe" will search for packages under /etc/packages/adobe)')
     parser.add_argument('-d', '--dryrun', action='store_true',
